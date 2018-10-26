@@ -2,19 +2,17 @@ package coreClasses;
 
 import java.io.IOException;
 
-import org.junit.After;
-import org.junit.Before;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class BaseTestScript {
 	public static WebDriver driver;
 	static String APPLICATION_URL;
 
-	@Before
+	@BeforeTest
 	public static void beoferTest() throws IOException {
 
 		driver = setUp();
@@ -41,10 +39,10 @@ public class BaseTestScript {
 	// driver.navigate().to(APPLICATION_URL);
 	// }
 
-	@After
+	@AfterTest
 	public void tearDown() {
-		driver.close();
-		driver.quit();
+	//	driver.close();
+	//	driver.quit();
 
 	}
 
