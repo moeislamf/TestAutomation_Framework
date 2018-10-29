@@ -16,6 +16,9 @@ public class login2 extends BaseTestScript{
 	@Test(priority =1)
 
 	public void Tc_Login_Pass() throws IOException, InterruptedException{
+		
+		test = extent.createTest("Login", "As coustomer i have to login to texting pro");
+		
  login = new loginPage(BaseTestScript.driver);
  //Log into application with valid credentials
  login.doLogin("mislam@tcgiit.com", "lookatme"); //calling doLogin which will enter credentials and submit. Look at the decleration athe buttom
@@ -23,6 +26,7 @@ public class login2 extends BaseTestScript{
  //verify user logged in successfully 
  if (login.verifyLoginSuccess() ) {
 	 System.out.println("Login Success");
+		Assert.assertTrue(true);
  } else {
 	 System.out.println("Login Failed");
 	 Assert.assertTrue(false);
@@ -32,11 +36,13 @@ public class login2 extends BaseTestScript{
 	@Test(priority =2)
 public void Tc_Login_Fail() throws IOException, InterruptedException {
 		
-	//login = new loginPage(BaseTestScript.driver);
+	test = extent.createTest("Login", "As coustomer i have to validate invalid login to texting pro attempt");	
+	
 	login.doLogin("mislam@tcgiit.com", "notagoodPassword");
 	
 	if(login.verifyErrorMessage4FailedLogin()) {
 		System.out.println("Test Case Passed");
+		Assert.assertTrue(true);
 	
 	}else {
 		System.out.println("TC failed");

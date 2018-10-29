@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-<listeners>
-      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-  </listeners>
-  <test thread-count="5" name="Create Keyword">
-    <classes>
-     <class name="register_functionality.createNewKeyword"/>
-    </classes>
-  </test> <!-- Test -->
-  
-  <test thread-count="5" name="Create SMS Template">
-    <classes>
-     <class name="register_functionality.createNewSMSTemplate"/>
-    </classes>
-  </test> <!-- Test -->
-  
-    <test thread-count="5" name="Log into TextingPro.com">
-    <classes>
-     <class name="register_functionality.login2"/>
-    </classes>
-  </test> <!-- Test -->
-  
-  </suite> <!-- Suite -->
+
+
+<!-- 	<parameter name="OS" value="Windows" /> -->
+<!-- 	<parameter name="browser" value="Chrome" /> -->
+
+<!-- 	<test name="Extent Report Test"> -->
+<!-- 		<classes> -->
+<!-- 			<class name="Extent_Reports_Classes.BasicExtentReport" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+
+	<test name="CreateNewKeyWord">
+		<classes>
+			<class name="register_functionality.createNewKeyword" />
+		</classes>
+	</test>
+
+	<test name="createNewSMSTemplate">
+		<classes>
+			<class name="register_functionality.createNewSMSTemplate" />
+		</classes>
+	</test>
+	
+	<test name="Login">
+		<classes>
+			<class name="register_functionality.login2" />
+		</classes>
+	</test>
+
+
+</suite> <!-- Suite -->

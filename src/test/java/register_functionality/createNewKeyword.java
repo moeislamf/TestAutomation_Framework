@@ -21,6 +21,8 @@ public class createNewKeyword extends BaseTestScript{
 	@Test
 	public void createkeyword() throws IOException, InterruptedException {
 		
+	 test = extent.createTest("Test Case 1", "As coustomer Create new Keyword");	
+		 
 	login = new loginPage(BaseTestScript.driver);
 	login.doLogin("textingpro3@gmail.com", "password");
 	
@@ -35,6 +37,7 @@ public class createNewKeyword extends BaseTestScript{
 	
 	if(createNewKeyword.keywordConfirmation()) {
 		System.out.println("Keyword successfully created");
+		Assert.assertTrue(true);
 	} else {
 		System.out.println("Keyword wasn't created");
 		Assert.assertTrue(false);

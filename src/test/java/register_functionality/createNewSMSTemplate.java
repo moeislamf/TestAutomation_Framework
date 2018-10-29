@@ -22,6 +22,8 @@ public class createNewSMSTemplate extends BaseTestScript{
 	@Test
 	public void creatAndverifyAddNewSMSTemplate() throws IOException, InterruptedException {
 		
+		test = extent.createTest("Add new Sms Template", "As coustomer i have to add new sms template");
+		
 		login = new loginPage(BaseTestScript.driver);
 		login.doLogin("textingpro3@gmail.com", "password");
 		
@@ -34,12 +36,13 @@ public class createNewSMSTemplate extends BaseTestScript{
 		
 				
 		saveNewSMStemplate = new addSMSTemplatePage(BaseTestScript.driver);
-		saveNewSMStemplate.createNewTemplate("Selenium test SMS Template 5", "Macys: Halloween blowout deal at http://atmsolutionsllc.com");
+		saveNewSMStemplate.createNewTemplate("Selenium test SMS Template 6", "Macys: Halloween blowout deal at http://atmsolutionsllc.com");
 		saveNewSMStemplate.clickAddNewTemplate();
 			
 		
 		if (createNewSMStemplate.verifyTemplateCreatedSuccessfully()) {
 			System.out.println("SMS template created successfully");
+			Assert.assertTrue(true);
 		} else {
 			System.out.println("SMS template was not created");
 			Assert.assertTrue(false);
