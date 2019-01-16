@@ -1,8 +1,9 @@
 package coreClasses;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,6 +25,10 @@ public class BasePageObject {
 
 	public static int Seconds = 15;
 
+	protected static String random = "abc" + RandomStringUtils.randomAlphanumeric(3).toUpperCase() + "@yopmail.com";
+
+	protected static String phoneNumber = RandomStringUtils.randomNumeric(10);
+
 	public BasePageObject(WebDriver driver) {
 		this.driver = driver;
 		build = new Actions(driver);
@@ -34,7 +39,7 @@ public class BasePageObject {
 
 		try {
 			WebElement element = driver.findElement(by);
-			getHighlightElement(element); //highligts 
+			getHighlightElement(element); // highligts
 			timeinterval(1);
 			build.moveToElement(element).click().perform();
 
@@ -147,6 +152,43 @@ public class BasePageObject {
 			System.out.println("Exception 2:" + e);
 		}
 		return false;
+	}
+
+	public void openNewTab() {
+		String a = "window.open('about:blank','_blank');";
+		((JavascriptExecutor) driver).executeScript(a);
+
+	}
+
+	public void openNewTab(String URL) {
+		String a = "window.open('" + URL + "','_blank');";
+		((JavascriptExecutor) driver).executeScript(a);
+	}
+
+	public void switchToWindow(int i) {
+		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		System.out.println(tabs);
+		driver.switchTo().window(tabs.get(i));
+	}
+
+	public void swichToIFrame(String nameOrId) {
+		driver.switchTo().frame(nameOrId);
+	}
+
+	public String getText(By by) throws IOException, InterruptedException {
+		waitForParticularElement(by, Seconds);
+		try {
+			getHighlightElement(driver.findElement(by));
+			return driver.findElement(by).getText().trim();
+		} catch (NoSuchElementException e) {
+			// Assert.assertTrue(false, "Fail to get text value from : " + by + " on page :
+			// " + e.getMessage());
+
+		} catch (Exception e) {
+			// logger.info(e.getMessage());
+
+		}
+		return null;
 	}
 
 }

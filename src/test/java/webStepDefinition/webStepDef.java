@@ -3,6 +3,8 @@ package webStepDefinition;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.ClickAction;
+import org.picocontainer.visitors.VerifyingVisitor;
 
 import coreClasses.BaseTestScript;
 import cucumber.api.java.en.And;
@@ -10,6 +12,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
+import pageObjects.DashboardPage;
+import pageObjects.VerifyPage;
 import pageObjects.contactUS;
 import pageObjects.homePage;
 import pageObjects.loginPage;
@@ -20,6 +24,8 @@ public class webStepDef {
 	registerPage registerpage;
     loginPage loginpage;
     contactUS contactus;
+    VerifyPage verifypage;
+    DashboardPage dashboardpage;
     
 	@Given("^user login into application$")
 	public void login() throws IOException {
@@ -45,9 +51,9 @@ public class webStepDef {
 		Assert.assertEquals(true, registerpage.userIsOnRegistrationPage());
 	}
 	
-	@When("^user enter \"(.*)\" and \"(.*)\" and \"(.*)\" registration details$")
-	public void filldRegistrationDetails(String email, String password, String confPassword) throws IOException {
-	registerpage.registration(email, password, confPassword);	
+	@When("^user enter registration details$")
+	public void filldRegistrationDetails() throws IOException {
+	registerpage.registration();	
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -71,6 +77,22 @@ public class webStepDef {
 		
 	}
 	
+	@And("^user enter OTP on verify page and click verify button$")
+	public void enterOTPonVerifyPage() throws IOException, InterruptedException {
+	verifypage = new VerifyPage(BaseTestScript.driver);
+	verifypage.enterOTP();
+	}
 	
+	@When("^user updates business information$")
+	public void updateBusiness() throws IOException {
+		verifypage = new VerifyPage(BaseTestScript.driver);
+		verifypage.updateBusinessInformation();
+	}
+	
+	@Then("^verify users lands on dashboard page$")
+	public void userLandsOnDashboard() throws IOException {
+		dashboardpage = new DashboardPage(BaseTestScript.driver);	
+		dashboardpage.verifyUsersSeeDashboard();
+	}
 	
 }

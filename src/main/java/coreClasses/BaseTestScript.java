@@ -2,13 +2,14 @@ package coreClasses;
 
 import java.io.IOException;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 
 public class BaseTestScript {
 	public static WebDriver driver;
@@ -20,7 +21,7 @@ public class BaseTestScript {
 		driver = setUp();
 		// APPLICATION_URL =
 		// textingProperties.getInstance().getProperty("qa_DEV_URL").trim();
-		driver.navigate().to("https://test.textingpro.com/index/index");
+		driver.navigate().to("https://test.textingpro.com/admin/adminlogin");
 	}
 
 	public static WebDriver setUp() {
